@@ -58,13 +58,14 @@ for book in filtered_books:
         if isinstance(book[key], list):
             book[key] = "; ".join(map(str, book[key]))
 
+filtered_books_sorted = sorted(filtered_books, key=lambda book: book["first_publish_year"])
 
 with open(f"Books about {topic}.csv", "w", newline="", encoding="utf-8") as file:
     writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()
-    writer.writerows(filtered_books)
+    writer.writerows(filtered_books_sorted)
 
 
 print("CSV file created successfully.")
 print(f"Total books: {len(books)}")
-print(f"Filtered books: {len(filtered_books)}")
+print(f"Filtered books: {len(filtered_books_sorted)}")
