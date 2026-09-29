@@ -58,7 +58,7 @@ for book in filtered_books:
         if isinstance(book[key], list):
             book[key] = "; ".join(map(str, book[key]))
 
-filtered_books_sorted = sorted(filtered_books, key=lambda book: book["first_publish_year"])
+filtered_books_sorted = sorted(filtered_books, key=lambda book: book["title"])
 
 with open(f"Books about {topic}.csv", "w", newline="", encoding="utf-8") as file:
     writer = csv.DictWriter(file, fieldnames=fieldnames)
