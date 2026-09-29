@@ -2,7 +2,17 @@ import requests
 import csv
 
 
-topic = input("Enter a topic: ")
+forbidden_characters = ['<', '>', ':', '"', '/', '\\', '|', '?', '*']
+
+check = True
+while check:
+    topic = input("Enter a topic: ")
+    check = False
+    for char in forbidden_characters:
+        if char in topic:
+            print("Invalid character!")
+            check = True
+            break
 
 params = {
     "q": topic,
@@ -58,7 +68,7 @@ for book in filtered_books:
         if isinstance(book[key], list):
             book[key] = "; ".join(map(str, book[key]))
 
-filtered_books_sorted = sorted(filtered_books, key=lambda book: book["title"])
+filtered_books_sorted = sorted(filtered_books, key=lambda book: book["title", ""])
 
 with open(f"Books about {topic}.csv", "w", newline="", encoding="utf-8") as file:
     writer = csv.DictWriter(file, fieldnames=fieldnames)
