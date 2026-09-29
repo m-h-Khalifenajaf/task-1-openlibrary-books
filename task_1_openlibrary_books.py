@@ -58,7 +58,7 @@ for book in filtered_books:
         if isinstance(book[key], list):
             book[key] = "; ".join(map(str, book[key]))
 
-filtered_books_sorted = sorted(filtered_books, key=lambda book: book["title", ""])
+filtered_books_sorted = sorted(filtered_books, key=lambda book: book.get("title", ""))
 
 for char in ['<', '>', ':', '"', '/', '\\', '|', '?', '*']:
     topic = topic.replace(char, '_')
